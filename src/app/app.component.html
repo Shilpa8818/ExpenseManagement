@@ -1,0 +1,23 @@
+
+<div class="container-fluid">
+  <div class="row justify-content-center" style="border-bottom: 1px solid red;">
+      <h3>Expenseeve</h3>
+    </div>
+  <div class="row mt-2">
+      <div class="col-3" style="height: 85vh!">
+        <ul class="list-group">
+          <li class="list-group-item" routerLink="/home" routerLinkActive="active">Home</li>
+          <li class="list-group-item" routerLink="/settings" routerLinkActive="active">Settings</li>
+          <li class="list-group-item" routerLink="/profile" routerLinkActive="active">Profile</li>
+        </ul>
+      </div>
+          
+      <div class="col-9">
+        <div class="card" style="width:100%;">
+          <router-outlet></router-outlet>
+        </div>
+      </div>
+  </div>
+</div>
+
+

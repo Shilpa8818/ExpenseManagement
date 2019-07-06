@@ -1,0 +1,107 @@
+<div class="row">
+    <div class="text-center col-6">
+        <div class="mr-2">
+            <div class="card" style="width:100%;">
+                <div class="card-body">
+                  <h5 class="card-title">Budget Overview</h5>
+                  <hr/>
+                  <div class="card-text">
+                    <div class="row">
+                      <div class="col-md-6">
+                          <div class="progress blue">
+                              <span class="progress-left">
+                                  <span class="progress-bar"></span>
+                              </span>
+                              <span class="progress-right">
+                                  <span class="progress-bar"></span>
+                              </span>
+                              <div class="progress-value">{{percentageUsages}}%</div>
+                          </div>
+                      </div>
+                      <div class="col-md-6">
+                        <table>
+                          <tr><th>Total budget</th></tr>
+                          <tr><td>{{totalBudget}}</td></tr>
+                          <tr><th>Total expenses</th></tr>
+                          <tr><td>{{total}}</td></tr>
+
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                  
+                </div>
+              </div>
+        </div>
+    </div>
+    <div class="text-center col-6">
+        <div class="ml-2">
+          <div class="card" style="width: 100%;">
+            <div class="card-body">
+              <h5 class="card-title">Category wise split</h5>
+              <hr/>
+              <div class="card-text">
+                  <div class="row">
+                    <div class="col-md-6">
+                        <div style="display: block">
+                            <canvas baseChart 
+                                    [data]="pieChartData"
+                                    [labels]="pieChartLabels"
+                                    [chartType]="pieChartType"
+                                    (chartHover)="chartHovered($event)"
+                                    (chartClick)="chartClicked($event)"></canvas>
+                          </div>
+                    </div>
+                    <div class="col-md-6">
+                      <table>
+                        <tr><th>Total budget</th></tr>
+                        <tr><td>200000</td></tr>
+                        <tr><th>Total expenses</th></tr>
+                        <tr><td>120000</td></tr>
+
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              
+              
+            </div>
+          </div></div>
+    </div>
+</div>
+<div class="row">
+    <button class="btn btn-success" (click)="addNewExpense()">Add Expense</button>
+</div>
+<div class="row">
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th scope="col">categoryName</th>
+      <th scope="col">Item</th>
+      <th scope="col">Amount</th>
+      <th scope="col">Date</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let ext of existingData">
+      <th scope="row">{{ ext.categoryName }}</th>
+      <td>
+        {{ ext.itemName }}
+      </td>
+      <td>{{ ext.amount}}</td>
+      <td>{{ ext.dateVal}}</td>
+    </tr>
+    </tbody>
+  </table>
+  
+  <div class="d-flex justify-content-between p-2">
+    <ngb-pagination [collectionSize]="collectionSize" [(page)]="page" [pageSize]="pageSize">
+    </ngb-pagination>
+  
+    <select class="custom-select" style="width: auto" [(ngModel)]="pageSize">
+      <option [ngValue]="2">2 items per page</option>
+      <option [ngValue]="4">4 items per page</option>
+      <option [ngValue]="6">6 items per page</option>
+    </select>
+</div>
+

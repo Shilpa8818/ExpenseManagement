@@ -1,0 +1,48 @@
+<h5 style="text-align:center">
+  Add New Expense
+</h5>
+<div class="addexpense">
+  <form [formGroup]="expenseForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+        <label>Category</label>
+        <input type="text" formControlName="categoryName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.categoryName.errors }" />
+        <div *ngIf="submitted && f.categoryName.errors" class="invalid-feedback">
+            <div *ngIf="f.categoryName.errors.required">Category Name is required</div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label>Item Name</label>
+        <input type="text" formControlName="itemName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.itemName.errors }" />
+        <div *ngIf="submitted && f.itemName.errors" class="invalid-feedback">
+            <div *ngIf="f.itemName.errors.required">Item Name is required</div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label>Amount</label>
+        <input type="text" formControlName="amount" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.amount.errors }" />
+        <div *ngIf="submitted && f.amount.errors" class="invalid-feedback">
+            <div *ngIf="f.amount.errors.required">Amount is required</div>
+        </div>
+    </div>
+    <div class="form-group">
+      <div class="input-group">
+        <input class="form-control" placeholder="yyyy-mm-dd"
+               name="dp"  formControlName="dateVal"  ngbDatepicker #d="ngbDatepicker" [ngClass]="{ 'is-invalid': submitted && f.dateVal.errors }">
+        <div class="input-group-append">
+          <button class="btn btn-outline-secondary calendar fa fa-calendar" (click)="d.toggle()" type="button"></button>
+        </div>
+        <div *ngIf="submitted && f.dateVal.errors" class="invalid-feedback">
+          <div *ngIf="f.dateVal.errors.required">Date is required</div>
+      </div>
+      </div>
+    </div>
+    <div class="form-group no-margin">
+        <button type="submit" class="btn btn-primary btn-block">
+            <div *ngIf="loading" class="spinner-border spinner-border-sm" role="status">
+                <span class="sr-only">Loading...</span>
+            </div>
+            Add
+        </button>
+    </div>
+</form>
+</div>
